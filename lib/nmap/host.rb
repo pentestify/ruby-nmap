@@ -158,7 +158,7 @@ module Nmap
     #   The IPv6 address of the host.
     #
     def ipv6
-      @ipv6 ||= if (@node.at("address[@addrtype='ipv6']"))
+      @ipv6 ||= if (addr = @node.at("address[@addrtype='ipv6']"))
                   addr['addr']
                 end
     end
@@ -247,14 +247,14 @@ module Nmap
       yield @os if (@os && block_given?)
       return @os
     end
-      
+
     #
     # Parses the Uptime analysis of the host.
     #
     # @yield [uptime]
     #   If a block is given, it will be passed the resulting object
     #
-    # @yieldparam [Uptime] 
+    # @yieldparam [Uptime]
     #   Uptime value.
     #
     # @return [Uptime]
